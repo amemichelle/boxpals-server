@@ -7,13 +7,11 @@ module.exports = {
   development: {
     client: "mysql",
     connection: {
-      connection: {
-        host: "127.0.0.1",
-        user: "root",
-        password: "new_password",
-        database: "boxpalsDB",
-        charset: "utf8",
-      },
+      host: "127.0.0.1",
+      user: "root",
+      password: "new_password",
+      database: "boxpalsDB",
+      charset: "utf8",
     },
   },
 };
