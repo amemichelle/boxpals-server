@@ -3,8 +3,8 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("particpants", (table) => {
-    table.increments("id").primary();
+  return knex.schema.createTable("participants", (table) => {
+    table.integer("id").primary();
 
     table.integer("user_id").unsigned();
     table.foreign("user_id").references("id").inTable("users");

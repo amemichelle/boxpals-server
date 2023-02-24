@@ -42,4 +42,18 @@ router.post("/signup", function (req, res, next) {
     });
 });
 
+router.post("/login", function (req, res, next) {
+  let username = req.body.username;
+  let password = req.body.password;
+
+  knex("users")
+    .where({
+      username: req.body.username,
+      password: req.body.password,
+    })
+    .then((data) => {
+      res.json(data);
+    });
+});
+
 module.exports = router;

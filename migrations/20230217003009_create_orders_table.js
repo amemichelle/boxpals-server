@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable("orders", (table) => {
-    table.increments("id").primary();
+    table.integer("id").primary();
     table.string("name").notNullable();
     table.integer("host_id").unsigned();
     table.foreign("host_id").references("id").inTable("users");

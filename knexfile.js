@@ -13,5 +13,8 @@ module.exports = {
       database: "boxpalsDB",
       charset: "utf8",
     },
+    seeds: {
+      directory: "./seeds",
+    },
   },
 };
