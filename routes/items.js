@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const knex = require("knex")(require("../knexfile.js").development);
 
-router.get("/purchased", (req, res) => {
+router.get("/items", (req, res) => {
   knex
     .select("*")
     .from("items")
@@ -13,7 +13,7 @@ router.get("/purchased", (req, res) => {
 });
 module.exports = router;
 
-router.post("/purchased", function (req, res) {
+router.post("/items", function (req, res) {
   let id = req.body.id;
   let name = req.body.name;
   let img_src = req.body.img_src;

@@ -1,19 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
-
-// FROM PASSPORT TUTORIAL
 const knex = require("knex")(require("../knexfile.js").development);
 
-// Get data from users table in database.
-router.get("/users", (req, res) => {
-  knex
-    .select("*")
-    .from("users")
-    .then((data) => {
-      res.json(data);
+router.get("/users/:userID", (req, res) => {
+  let userID = req.params;
+  knex("users")
+    .where({ id: userID.userID })
+    .then((user) => {
+      res.json(user);
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).send("Error getting users");
     });
 });
