@@ -3,10 +3,38 @@ const router = express.Router();
 const fs = require("fs");
 const knex = require("knex")(require("../knexfile.js").development);
 
+router.get("/users/", (req, res) => {
+  knex
+    .select("*")
+    .from("users")
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Error getting users");
+    });
+});
+
 router.get("/users/:userID", (req, res) => {
   let userID = req.params;
   knex("users")
     .where({ id: userID.userID })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Error getting users");
+    });
+});
+
+router.get("/users/participant/:email", (req, res) => {
+  let emailaddress = req.params.email;
+  console.log(emailaddress);
+  console.log("bananas");
+  knex("users")
+    .where({ email: emailaddress })
     .then((user) => {
       res.json(user);
     })

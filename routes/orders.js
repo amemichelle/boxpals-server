@@ -12,6 +12,16 @@ router.get("/orders", (req, res) => {
     });
 });
 
+router.get("/orders/:orderID", (req, res) => {
+  let orderID = req.params.orderID;
+
+  knex("orders")
+    .where({ id: orderID })
+    .then((order) => {
+      res.json(order);
+    });
+});
+
 router.post("/orders", (req, res) => {
   let id = req.body.id;
   let name = req.body.name;
@@ -36,6 +46,32 @@ router.get("/participants", (req, res) => {
     .from("participants")
     .then((data) => {
       res.json(data);
+    });
+});
+
+router.get("/participants/:userID", (req, res) => {
+  let userID = req.params;
+  knex("participants")
+    .where({ user_id: userID.userID })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Error getting users");
+    });
+});
+
+router.get("/participants/order/:orderID", (req, res) => {
+  let orderID = req.params.orderID;
+  knex("participants")
+    .where({ order_id: orderID })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Error getting users");
     });
 });
 
