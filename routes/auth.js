@@ -31,8 +31,6 @@ router.get("/users/:userID", (req, res) => {
 
 router.get("/users/participant/:email", (req, res) => {
   let emailaddress = req.params.email;
-  console.log(emailaddress);
-  console.log("bananas");
   knex("users")
     .where({ email: emailaddress })
     .then((user) => {
